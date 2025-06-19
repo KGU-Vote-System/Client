@@ -1,5 +1,6 @@
+import { motion } from 'framer-motion';
 import { useFlow } from '@/app/stackflow';
-import { Character, TextBoxIcon } from '@/assets/icon';
+import { Character, KakaoIcon, TextBoxIcon } from '@/assets/icon';
 import { PATH } from '@/shared/constants';
 import { Button } from '@/shared/ui';
 
@@ -18,23 +19,30 @@ export default function EntryContainer() {
             간단하게, 빠르게, 안전하게
           </span>
         </div>
-        <span className="text-m logo -mt-5 text-[86px] font-bold">took!</span>
-        <div className="w-full space-y-5">
-          <p className="text-s text-center text-lg">어떻게 시작할까요?</p>
+        <motion.span
+          className="text-m logo -mt-4 text-[86px] font-bold"
+          animate={{ scale: [1.2, 1.0] }}
+          transition={{
+            duration: 1.2,
+            repeat: Infinity,
+            repeatType: 'reverse',
+            ease: 'easeInOut',
+          }}
+        >
+          took!
+        </motion.span>{' '}
+        <div className="mt-16 w-full space-y-5">
           <Button
-            intent="login"
-            className="py-[14px] text-lg"
+            intent="kakao"
+            className="flex items-center justify-center gap-2 py-[14px] text-lg"
             onClick={() => replace(PATH.LOGIN, {})}
           >
-            학생으로 시작하기
+            <img src={KakaoIcon} />
+            카카오 로그인
           </Button>
-          <Button
-            intent="loginWhite"
-            className="py-[14px] text-lg"
-            onClick={() => replace(PATH.LOGIN, {})}
-          >
-            관리자로 시작하기
-          </Button>
+          <p className="text-s text-center text-lg">
+            간편로그인 후 이용 가능합니다
+          </p>
         </div>
       </div>
     </div>
