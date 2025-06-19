@@ -30,7 +30,7 @@ export default function LoginContainer() {
           }}
         >
           took!
-        </motion.span>{' '}
+        </motion.span>
         <div className="mt-16 w-full space-y-5">
           <Button
             intent="kakao"
