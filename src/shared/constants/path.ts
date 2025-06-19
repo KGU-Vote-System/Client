@@ -7,6 +7,8 @@ export const PATH = {
   LOGIN: 'LoginScreen',
   HOME: 'HomeScreen',
   JOIN: 'JoinScreen',
+  JOIN_COMPLETE: 'JoinCompleteScreen',
+  JOIN_LOADING: 'JoinLoadingScreen',
   NOTICE: 'NoticeScreen',
   NOTICE_CONTENT: 'NoticeContentScreen',
   NOTICE_CREATE: 'NoticeCreateScreen',
