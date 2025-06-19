@@ -13,7 +13,7 @@ interface GetRequestParams<TParams> {
 }
 
 const instance = axios.create({
-  baseURL: 'http://localhost:8080/',
+  baseURL: 'http://localhost:8080',
 });
 
 export async function get<TResponse, TParams = unknown>(
