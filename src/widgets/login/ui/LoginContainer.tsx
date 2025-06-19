@@ -1,11 +1,13 @@
 import { motion } from 'framer-motion';
-import { useFlow } from '@/app/stackflow';
 import { Character, KakaoIcon, TextBoxIcon } from '@/assets/icon';
-import { PATH } from '@/shared/constants';
 import { Button } from '@/shared/ui';
 
 export default function LoginContainer() {
-  const { replace } = useFlow();
+  const handleClick = () => {
+    window.location.replace(
+      `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${import.meta.env.VITE_KAKAO_REST_API_KEY}&redirect_uri=${import.meta.env.VITE_REDIRECT_URL}`,
+    );
+  };
 
   return (
     <div className="flex size-full flex-col overflow-hidden">
@@ -35,7 +37,7 @@ export default function LoginContainer() {
           <Button
             intent="kakao"
             className="flex items-center justify-center gap-2 py-[14px] text-lg"
-            onClick={() => replace(PATH.JOIN, {})}
+            onClick={handleClick}
           >
             <img src={KakaoIcon} />
             카카오 로그인
