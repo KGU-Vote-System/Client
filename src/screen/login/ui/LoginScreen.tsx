@@ -2,7 +2,7 @@ import { AppScreen } from '@stackflow/plugin-basic-ui';
 
 import { VoteBg } from '@/assets/image';
 import { TitleAppBar } from '@/shared/ui';
-import { EntryContainer } from '@/widgets/entry/ui';
+import { LoginContainer } from '@/widgets/login/ui';
 
 export default function EntryScreen() {
   return (
@@ -11,7 +11,7 @@ export default function EntryScreen() {
       backgroundImage={`url(${VoteBg})`}
       appBar={TitleAppBar('', VoteBg)}
     >
-      <EntryContainer />
+      <LoginContainer />
     </AppScreen>
   );
 }

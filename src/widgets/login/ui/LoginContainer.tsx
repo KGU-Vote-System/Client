@@ -4,7 +4,7 @@ import { Character, KakaoIcon, TextBoxIcon } from '@/assets/icon';
 import { PATH } from '@/shared/constants';
 import { Button } from '@/shared/ui';
 
-export default function EntryContainer() {
+export default function LoginContainer() {
   const { replace } = useFlow();
 
   return (
