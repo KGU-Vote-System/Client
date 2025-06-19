@@ -3,7 +3,7 @@ import { PATH } from '@/shared/constants';
 import { Button, Input } from '@/shared/ui';
 
 export default function LoginContainer() {
-  const { push } = useFlow();
+  const { replace } = useFlow();
 
   return (
     <div className="p-normal grid size-full place-items-center">
@@ -28,14 +28,14 @@ export default function LoginContainer() {
             <Button
               intent="login"
               className="py-[14px] text-lg"
-              onClick={() => push(PATH.HOME, {})}
+              onClick={() => replace(PATH.HOME, {})}
             >
               학생으로 시작하기
             </Button>
             <Button
               intent="loginWhite"
               className="py-[14px] text-lg"
-              onClick={() => push(PATH.ADMIN_HOME, {})}
+              onClick={() => replace(PATH.ADMIN_HOME, {})}
             >
               관리자로 시작하기
             </Button>
