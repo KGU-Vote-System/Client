@@ -35,7 +35,7 @@ export default function EntryContainer() {
           <Button
             intent="kakao"
             className="flex items-center justify-center gap-2 py-[14px] text-lg"
-            onClick={() => replace(PATH.LOGIN, {})}
+            onClick={() => replace(PATH.JOIN, {})}
           >
             <img src={KakaoIcon} />
             카카오 로그인

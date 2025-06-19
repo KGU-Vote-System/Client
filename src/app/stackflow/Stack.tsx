@@ -8,7 +8,6 @@ import { AdminVoteEditScreen } from '@/screen/admin-vote-edit/ui';
 import { AdminVoteResultScreen } from '@/screen/admin-vote-result/ui';
 import { AdminVoteStatusScreen } from '@/screen/admin-vote-status/ui';
 import { HomeScreen } from '@/screen/home/ui';
-import { LoginScreen } from '@/screen/login/ui';
 import { NoticeContentScreen } from '@/screen/notice-content/ui';
 import { NoticeScreen } from '@/screen/notice/ui';
 import { VoteCompleteScreen } from '@/screen/vote-complete/ui';
@@ -21,6 +20,7 @@ import { VoteScreen } from '@/screen/vote/ui';
 import { VoteEditScreen } from '@/screen/vote-edit/ui';
 import { EntryScreen } from '@/screen/entry/ui';
 import { NoticeCreateScreen } from '@/screen/notice-create/ui';
+import { JoinScreen } from '@/screen/join/ui';
 
 export const { Stack, useFlow } = stackflow({
   transitionDuration: 350,
@@ -42,7 +42,7 @@ export const { Stack, useFlow } = stackflow({
     VotePromiseScreen,
     VoteResultScreen,
     VoteResultContentScreen,
-    LoginScreen,
+    JoinScreen,
     HomeScreen,
   },
   plugins: [

@@ -6,7 +6,7 @@ export const PATH = {
   ADMIN_HOME: 'AdminHomeScreen',
   ENTRY: 'EntryScreen',
   HOME: 'HomeScreen',
-  LOGIN: 'LoginScreen',
+  JOIN: 'JoinScreen',
   NOTICE: 'NoticeScreen',
   NOTICE_CONTENT: 'NoticeContentScreen',
   NOTICE_CREATE: 'NoticeCreateScreen',

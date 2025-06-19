@@ -28,14 +28,14 @@ export default function LoginContainer() {
             <Button
               intent="login"
               className="py-[14px] text-lg"
-              onClick={() => push(PATH.LOGIN, {})}
+              onClick={() => push(PATH.HOME, {})}
             >
               학생으로 시작하기
             </Button>
             <Button
               intent="loginWhite"
               className="py-[14px] text-lg"
-              onClick={() => push(PATH.LOGIN, {})}
+              onClick={() => push(PATH.ADMIN_HOME, {})}
             >
               관리자로 시작하기
             </Button>
