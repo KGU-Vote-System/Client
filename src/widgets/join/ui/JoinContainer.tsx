@@ -28,7 +28,7 @@ export default function LoginContainer() {
             <Button
               intent="login"
               className="py-[14px] text-lg"
-              onClick={() => replace(PATH.HOME, {})}
+              onClick={() => replace(PATH.JOIN_LOADING, {})}
             >
               학생으로 시작하기
             </Button>
