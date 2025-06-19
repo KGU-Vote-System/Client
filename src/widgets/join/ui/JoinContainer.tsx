@@ -12,7 +12,7 @@ export default function LoginContainer() {
           <p className="text-md text-3xl leading-tight font-semibold">
             재학생 인증 후
             <br />
-            서비스를 이용할 수 있어요!
+            선거에 참여할 수 있어요!
           </p>
           <div className="w-full space-y-3">
             <Input intent="login" placeholder="학번" />
