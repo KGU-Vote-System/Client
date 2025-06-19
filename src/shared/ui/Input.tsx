@@ -8,7 +8,7 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> &
 const InputVariants = cva('w-full focus:outline-none', {
   variants: {
     intent: {
-      login: 'rounded-md border-[1px] border-s',
+      login: 'rounded-md border-[1px] border-[#ADADAD]',
       primary: '',
     },
     size: {
