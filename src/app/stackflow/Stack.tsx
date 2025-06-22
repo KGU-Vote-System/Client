@@ -20,6 +20,7 @@ import { VotePromiseScreen } from '@/screen/vote-promise/ui';
 import { VoteResultContentScreen } from '@/screen/vote-result-content/ui';
 import { VoteResultScreen } from '@/screen/vote-result/ui';
 import { VoteScreen } from '@/screen/vote/ui';
+import { fetchLoginStatus } from '@/shared/utils';
 
 export const { Stack, useFlow } = stackflow({
   transitionDuration: 350,
@@ -50,6 +51,8 @@ export const { Stack, useFlow } = stackflow({
     }),
   ],
   initialActivity: () => {
-    return 'LoginScreen';
+    if (fetchLoginStatus()) {
+      return 'HomeScreen';
+    } else return 'LoginScreen';
   },
 });
