@@ -1,12 +1,10 @@
-import { useFlow } from '@/app/stackflow';
-import { PATH } from '@/shared/constants';
+import { RAW_PATH } from '@/shared/constants';
 import { Button, Input } from '@/shared/ui';
+import { replace } from '@/shared/utils';
 
 export default function LoginContainer() {
-  const { replace } = useFlow();
-
   return (
-    <div className="p-normal grid size-full place-items-center">
+    <div className="p-normal z-10 grid size-full place-items-center">
       <div className="shadow-login box-border grid h-[530px] w-full place-items-center rounded-lg border-[1px] border-white bg-white/50 p-6 backdrop-blur-sm">
         <div className="flex w-full flex-col justify-center space-y-12">
           <p className="text-md text-3xl leading-tight font-semibold">
@@ -28,14 +26,14 @@ export default function LoginContainer() {
             <Button
               intent="login"
               className="py-[14px] text-lg"
-              onClick={() => replace(PATH.JOIN_LOADING, {})}
+              onClick={() => replace(RAW_PATH.SIGNUP_LOADING)}
             >
               학생으로 시작하기
             </Button>
             <Button
               intent="loginWhite"
               className="py-[14px] text-lg"
-              onClick={() => replace(PATH.ADMIN_HOME, {})}
+              onClick={() => replace(RAW_PATH.SIGNUP_LOADING)}
             >
               관리자로 시작하기
             </Button>

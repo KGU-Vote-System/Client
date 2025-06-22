@@ -1,18 +1,17 @@
 import { CharacterFlat } from '@/assets/icon';
-import { useFlow } from '@/app/stackflow';
-import { PATH } from '@/shared/constants';
+import { RAW_PATH } from '@/shared/constants';
 import { useEffect, useState } from 'react';
 import { TEXT } from '../constants';
 import ProgressBar from './ProgressBar';
+import { replace } from '@/shared/utils';
 
 export default function JoinLoadingContainer() {
-  const { replace } = useFlow();
   const [progress, setProgress] = useState(0);
   const text = progress > 50 ? 1 : 0;
 
   useEffect(() => {
-    if (progress >= 100) replace(PATH.JOIN_COMPLETE, {});
-  }, [progress, replace]);
+    if (progress >= 100) replace(RAW_PATH.SIGNUP_COMPLETE);
+  }, [progress]);
 
   return (
     <div className="grid size-full place-items-center">
@@ -34,7 +33,7 @@ export default function JoinLoadingContainer() {
         </div>
         <button
           className="mt-24 cursor-pointer text-sm text-[#999] underline focus:outline-none"
-          onClick={() => replace(PATH.JOIN, {}, { animate: false })}
+          onClick={() => replace(RAW_PATH.SIGNUP)}
         >
           취소하기
         </button>
