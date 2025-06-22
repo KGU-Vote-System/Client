@@ -6,11 +6,11 @@ import { RAW_PATH } from '@/shared/constants';
 import { userTokenAtom } from '@/shared/atom';
 import { replace } from '@/shared/utils';
 
-interface KakaoTokenRequest {
+interface KakaoLoginRequest {
   code: string;
 }
 
-interface KakaoTokenResponse {
+interface KakaoLoginResponse {
   kakaoEmail: string;
   tokenDto: {
     grantType: string;
@@ -21,22 +21,22 @@ interface KakaoTokenResponse {
   signedUp: boolean;
 }
 
-const submitKakaoToken = async (code: string) => {
-  const response = await post<KakaoTokenRequest, KakaoTokenResponse>({
+const submitKakaoLogin = async (code: string) => {
+  const response = await post<KakaoLoginRequest, KakaoLoginResponse>({
     request: REQUEST.LOGIN,
     data: { code: code },
   });
   return response.data;
 };
 
-export const useKakaoToken = () => {
-  const setKakaoToken = useSetAtom(userTokenAtom);
+export const useKakaoLogin = () => {
+  const setKakaoLogin = useSetAtom(userTokenAtom);
 
-  return useMutation<KakaoTokenResponse, Error, { code: string }>({
-    mutationFn: ({ code }) => submitKakaoToken(code),
+  return useMutation<KakaoLoginResponse, Error, { code: string }>({
+    mutationFn: ({ code }) => submitKakaoLogin(code),
     onSuccess: data => {
       const kakaoAccessToken = data.tokenDto.accessToken;
-      setKakaoToken({
+      setKakaoLogin({
         accessToken: kakaoAccessToken,
       });
       if (data.signedUp) replace(RAW_PATH.HOME);

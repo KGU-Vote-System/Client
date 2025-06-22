@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
-import { useKakaoToken } from '@/screen/auth/api';
+import { useKakaoLogin } from '@/screen/auth/api';
 import { LoginBg } from '@/assets/image';
 
 export default function AuthScreen() {
   const params = new URLSearchParams(location.search);
   const code = params.get('code');
 
-  const { mutate, isPending, isError } = useKakaoToken();
+  const { mutate, isPending, isError } = useKakaoLogin();
 
   useEffect(() => {
     if (code) mutate({ code });
