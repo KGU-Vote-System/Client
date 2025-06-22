@@ -1,17 +1,16 @@
-import { AppScreen } from '@stackflow/plugin-basic-ui';
-
 import { LoginBg } from '@/assets/image';
 import { JoinContainer } from '@/widgets/join/ui';
-import { NoBackLogoAppBar } from '@/shared/ui';
 
 export default function JoinScreen() {
   return (
-    <AppScreen
-      preventSwipeBack
-      backgroundImage={`url(${LoginBg})`}
-      appBar={NoBackLogoAppBar(LoginBg)}
-    >
+    <div className="container-mobile relative h-screen overflow-hidden">
+      <div className="px-normal top-0 flex h-[58px] w-full items-center">
+        <span className="logo text-m ml-[4px] text-3xl font-semibold">
+          took!
+        </span>
+      </div>
       <JoinContainer />
-    </AppScreen>
+      <img src={LoginBg} className="absolute inset-0 -z-1" />
+    </div>
   );
 }

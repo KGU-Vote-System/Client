@@ -1,18 +1,17 @@
-import { AppScreen } from '@stackflow/plugin-basic-ui';
-import { useFlow } from '@/app/stackflow';
 import { CharacterComplete } from '@/assets/icon';
 import { VoteBg } from '@/assets/image';
-import { Button, NoBackLogoAppBar } from '@/shared/ui';
-import { PATH } from '@/shared/constants';
+import { Button } from '@/shared/ui';
+import { RAW_PATH } from '@/shared/constants';
+import { replace } from '@/shared/utils';
 
 export default function JoinCompleteScreen() {
-  const { replace } = useFlow();
   return (
-    <AppScreen
-      preventSwipeBack
-      appBar={NoBackLogoAppBar(VoteBg)}
-      backgroundImage={`url(${VoteBg})`}
-    >
+    <div className="container-mobile relative h-screen overflow-hidden">
+      <div className="px-normal top-0 flex h-[58px] w-full items-center">
+        <span className="logo text-m ml-[4px] text-3xl font-semibold">
+          took!
+        </span>
+      </div>
       <div className="p-normal flex size-full flex-col">
         <p className="mt-mt mb-[14px] text-4xl leading-tight font-semibold">
           가입완료!
@@ -26,12 +25,13 @@ export default function JoinCompleteScreen() {
         <Button
           intent="gradient"
           onClick={() => {
-            replace(PATH.HOME, {});
+            replace(RAW_PATH.HOME);
           }}
         >
           시작하기
         </Button>
       </div>
-    </AppScreen>
+      <img src={VoteBg} className="absolute inset-0 -z-1" />
+    </div>
   );
 }

@@ -1,10 +1,9 @@
 import { JoinLoadingContainer } from '@/widgets/join-loading/ui';
-import { AppScreen } from '@stackflow/plugin-basic-ui';
 
 export default function JoinLoadingScreen() {
   return (
-    <AppScreen preventSwipeBack>
+    <div className="container-mobile relative h-screen overflow-hidden">
       <JoinLoadingContainer />
-    </AppScreen>
+    </div>
   );
 }
