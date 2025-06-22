@@ -4,9 +4,8 @@ export const PATH = {
   ADMIN_VOTE_RESULT: 'AdminVoteResultScreen',
   ADMIN_VOTE_STATUS: 'AdminVoteStatusScreen',
   ADMIN_HOME: 'AdminHomeScreen',
-  ENTRY: 'EntryScreen',
-  HOME: 'HomeScreen',
   LOGIN: 'LoginScreen',
+  HOME: 'HomeScreen',
   NOTICE: 'NoticeScreen',
   NOTICE_CONTENT: 'NoticeContentScreen',
   NOTICE_CREATE: 'NoticeCreateScreen',
@@ -24,4 +23,6 @@ export const RAW_PATH = {
   HOME: '/',
   AUTH: '/auth',
   SIGNUP: '/signup',
+  SIGNUP_LOADING: '/signup-loading',
+  SIGNUP_COMPLETE: '/signup-complete',
 };

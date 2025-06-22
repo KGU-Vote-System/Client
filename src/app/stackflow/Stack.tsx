@@ -10,17 +10,17 @@ import { AdminVoteStatusScreen } from '@/screen/admin-vote-status/ui';
 import { HomeScreen } from '@/screen/home/ui';
 import { LoginScreen } from '@/screen/login/ui';
 import { NoticeContentScreen } from '@/screen/notice-content/ui';
+import { NoticeCreateScreen } from '@/screen/notice-create/ui';
 import { NoticeScreen } from '@/screen/notice/ui';
 import { VoteCompleteScreen } from '@/screen/vote-complete/ui';
 import { VoteCreateCompleteScreen } from '@/screen/vote-create-complete/ui';
 import { VoteCreateScreen } from '@/screen/vote-create/ui';
+import { VoteEditScreen } from '@/screen/vote-edit/ui';
 import { VotePromiseScreen } from '@/screen/vote-promise/ui';
 import { VoteResultContentScreen } from '@/screen/vote-result-content/ui';
 import { VoteResultScreen } from '@/screen/vote-result/ui';
 import { VoteScreen } from '@/screen/vote/ui';
-import { VoteEditScreen } from '@/screen/vote-edit/ui';
-import { EntryScreen } from '@/screen/entry/ui';
-import { NoticeCreateScreen } from '@/screen/notice-create/ui';
+import { fetchLoginStatus } from '@/shared/utils';
 
 export const { Stack, useFlow } = stackflow({
   transitionDuration: 350,
@@ -30,7 +30,7 @@ export const { Stack, useFlow } = stackflow({
     AdminVoteStatusScreen,
     AdminVoteEditScreen,
     AdminHomeScreen,
-    EntryScreen,
+    LoginScreen,
     NoticeScreen,
     NoticeContentScreen,
     NoticeCreateScreen,
@@ -42,7 +42,6 @@ export const { Stack, useFlow } = stackflow({
     VotePromiseScreen,
     VoteResultScreen,
     VoteResultContentScreen,
-    LoginScreen,
     HomeScreen,
   },
   plugins: [
@@ -52,6 +51,13 @@ export const { Stack, useFlow } = stackflow({
     }),
   ],
   initialActivity: () => {
-    return 'EntryScreen';
+    if (fetchLoginStatus()) {
+      if (sessionStorage.getItem('userMode')) {
+        const mode = JSON.parse(sessionStorage.getItem('userMode')!).mode;
+        if (mode === 'STUDENT') return 'HomeScreen';
+        else if (mode === 'ADMIN') return 'AdminHomeScreen';
+        else return 'LoginScreen';
+      } else return 'LoginScreen';
+    } else return 'LoginScreen';
   },
 });

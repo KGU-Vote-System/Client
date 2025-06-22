@@ -1,4 +1,6 @@
 import Character from './character.svg';
+import CharacterComplete from './character-complete.png';
+import CharacterFlat from './character-flat.png';
 import Character2 from './character2.svg';
 import VerifiedCheckIcon from './icon-check-verified.svg';
 import CreateCompleteIcon from './icon-create-complete.png';
@@ -21,6 +23,8 @@ export {
   BackButton,
   Character,
   Character2,
+  CharacterFlat,
+  CharacterComplete,
   CreateCompleteIcon,
   CreateVoteIcon,
   DashBoardIcon,
