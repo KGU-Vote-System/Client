@@ -26,4 +26,6 @@ export const RAW_PATH = {
   HOME: '/',
   AUTH: '/auth',
   SIGNUP: '/signup',
+  SIGNUP_LOADING: '/signup-loading',
+  SIGNUP_COMPLETE: '/signup-complete',
 };
