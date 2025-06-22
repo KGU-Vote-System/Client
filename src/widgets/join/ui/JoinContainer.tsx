@@ -1,8 +1,11 @@
+import { userModeAtom } from '@/shared/atom';
 import { RAW_PATH } from '@/shared/constants';
 import { Button, Input } from '@/shared/ui';
 import { replace } from '@/shared/utils';
+import { useSetAtom } from 'jotai';
 
 export default function LoginContainer() {
+  const setUserMode = useSetAtom(userModeAtom);
   return (
     <div className="p-normal z-10 grid size-full place-items-center">
       <div className="shadow-login box-border grid h-[530px] w-full place-items-center rounded-lg border-[1px] border-white bg-white/50 p-6 backdrop-blur-sm">
@@ -26,14 +29,20 @@ export default function LoginContainer() {
             <Button
               intent="login"
               className="py-[14px] text-lg"
-              onClick={() => replace(RAW_PATH.SIGNUP_LOADING)}
+              onClick={() => {
+                setUserMode({ mode: 'STUDENT' as const });
+                replace(RAW_PATH.SIGNUP_LOADING);
+              }}
             >
               학생으로 시작하기
             </Button>
             <Button
               intent="loginWhite"
               className="py-[14px] text-lg"
-              onClick={() => replace(RAW_PATH.SIGNUP_LOADING)}
+              onClick={() => {
+                setUserMode({ mode: 'ADMIN' as const });
+                replace(RAW_PATH.SIGNUP_LOADING);
+              }}
             >
               관리자로 시작하기
             </Button>

@@ -52,7 +52,12 @@ export const { Stack, useFlow } = stackflow({
   ],
   initialActivity: () => {
     if (fetchLoginStatus()) {
-      return 'HomeScreen';
+      if (sessionStorage.getItem('userMode')) {
+        const mode = JSON.parse(sessionStorage.getItem('userMode')!).mode;
+        if (mode === 'STUDENT') return 'HomeScreen';
+        else if (mode === 'ADMIN') return 'AdminHomeScreen';
+        else return 'LoginScreen';
+      } else return 'LoginScreen';
     } else return 'LoginScreen';
   },
 });
