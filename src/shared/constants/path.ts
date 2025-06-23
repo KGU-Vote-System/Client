@@ -21,7 +21,7 @@ export const PATH = {
 
 export const RAW_PATH = {
   HOME: '/',
-  AUTH: '/auth',
+  AUTH: '/auth/kakao',
   SIGNUP: '/signup',
   SIGNUP_LOADING: '/signup-loading',
   SIGNUP_COMPLETE: '/signup-complete',
