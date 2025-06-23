@@ -57,7 +57,7 @@ const ServiceButton = ({
         <span className="text-lg font-semibold">{title}</span>
         <span className="text-s text-sm font-medium">{description}</span>
       </div>
-      <img src={icon} alt="notice" />
+      <img src={icon} alt="notice" className="w-[48px]" />
     </button>
   );
 };

@@ -17,10 +17,13 @@ export default function NoticeItem({ id, title, type, date }: Notice) {
         push(PATH.NOTICE_CONTENT, { notice: { id, title, type, date } })
       }
     >
-      <img
-        src={type === 'NOTIFICATION' ? NotificationIcon : MessageIcon}
-        className="shadow-noticeItem size-10 rounded-md"
-      />
+      <div className="shadow-noticeItem grid place-items-center rounded-md px-2 py-1">
+        <img
+          src={type === 'NOTIFICATION' ? NotificationIcon : MessageIcon}
+          className="h-10 w-11"
+        />
+      </div>
+
       <div className="ml-[10px] flex w-full flex-col items-start">
         <div className="flex w-full justify-between text-lg font-semibold">
           <p className="w-52 overflow-hidden text-start font-normal text-nowrap text-ellipsis">
