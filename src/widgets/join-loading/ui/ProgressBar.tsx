@@ -14,7 +14,6 @@ export default function ProgressBar({
 }: ProgressBarProps) {
   useEffect(() => {
     if (progress >= 100) return;
-
     const timeout = setTimeout(() => {
       setProgress(prev => prev + 1);
     }, speed);

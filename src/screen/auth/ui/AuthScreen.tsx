@@ -6,6 +6,7 @@ import { LoginBg } from '@/assets/image';
 import { replace } from '@/shared/utils';
 import { RAW_PATH } from '@/shared/constants';
 import { userTokenAtom } from '@/shared/atom';
+import Loader from '@/shared/ui/Loader';
 
 export default function AuthScreen() {
   const setUserToken = useSetAtom(userTokenAtom);
@@ -43,7 +44,10 @@ export default function AuthScreen() {
 
   return (
     <div className="container-mobile relative grid h-screen place-items-center overflow-hidden">
-      <span className="text-xl font-semibold text-white">로그인 중...</span>
+      <div className="mb-4 flex flex-col items-center justify-center">
+        <Loader />
+        <span className="text-m -m-4 text-xl font-medium">로그인 중...</span>
+      </div>
       <img src={LoginBg} className="absolute inset-0 -z-1" />
     </div>
   );
