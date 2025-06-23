@@ -6,7 +6,7 @@ import { LoginBg } from '@/assets/image';
 import { replace } from '@/shared/utils';
 import { RAW_PATH } from '@/shared/constants';
 import { userEmailAtom, userTokenAtom } from '@/shared/atom';
-import Loader from '@/shared/ui/Loader';
+import { Loader } from '@/shared/ui';
 
 export default function AuthScreen() {
   const setUserToken = useSetAtom(userTokenAtom);
