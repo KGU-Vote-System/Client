@@ -1,11 +1,11 @@
 export const fetchLoginStatus = () => {
-  // const stored = sessionStorage.getItem('userToken');
-  // if (stored) {
-  //   const parsed = JSON.parse(stored);
-  //   const hasToken: boolean =
-  //     parsed.accessToken && parsed.accessToken.length > 0;
-  //   return hasToken;
-  // }
-  // return false;
-  return true; // 개발용 임시
+  const stored = sessionStorage.getItem('userToken');
+  if (stored) {
+    const parsed = JSON.parse(stored);
+    const hasToken: boolean =
+      parsed.accessToken && parsed.accessToken.length > 0;
+    return hasToken;
+  }
+  return false;
+  // return true; // 개발용 임시
 };

@@ -1,15 +1,13 @@
 import { motion } from 'framer-motion';
 import { Character, KakaoIcon, TextBoxIcon } from '@/assets/icon';
 import { Button } from '@/shared/ui';
-import { replace } from '@/shared/utils';
-import { RAW_PATH } from '@/shared/constants';
 
 export default function LoginContainer() {
   const handleClick = () => {
-    replace(RAW_PATH.SIGNUP); // 개발용 임시
-    // window.location.replace(
-    //   `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${import.meta.env.VITE_KAKAO_REST_API_KEY}&redirect_uri=${import.meta.env.VITE_REDIRECT_URL}`,
-    // );
+    // replace(RAW_PATH.SIGNUP); // 개발용 임시
+    window.location.replace(
+      `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${import.meta.env.VITE_KAKAO_REST_API_KEY}&redirect_uri=${import.meta.env.VITE_REDIRECT_URL}`,
+    );
   };
 
   return (
