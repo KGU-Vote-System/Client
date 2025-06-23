@@ -23,8 +23,7 @@ interface KakaoLoginResponse {
 
 const submitKakaoLogin = async (code: string) => {
   const response = await post<KakaoLoginRequest, KakaoLoginResponse>({
-    request: REQUEST.LOGIN,
-    data: { code: code },
+    request: `${REQUEST.LOGIN}?code=${code}`,
   });
   return response.data;
 };
