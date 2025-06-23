@@ -26,7 +26,7 @@ export const userTokenAtom = atomWithStorage<Token>(
 );
 
 export const userEmailAtom = atomWithStorage<Email>(
-  'userToken',
+  'userEmail',
   initialEmailState,
   sessionStorage as AsyncStorage<Email>,
 );
