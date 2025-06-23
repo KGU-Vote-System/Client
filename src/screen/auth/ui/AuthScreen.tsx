@@ -21,7 +21,7 @@ export default function AuthScreen() {
     return code;
   };
 
-  const { data, isError, isFetching } = useKakaoLogin(getCode());
+  const { data, isError } = useKakaoLogin(getCode());
 
   useEffect(() => {
     if (data) {
@@ -29,13 +29,9 @@ export default function AuthScreen() {
       setUserToken({
         accessToken: kakaoAccessToken,
       });
-      if (data.signedUp) {
-        replace(RAW_PATH.HOME);
-
-        if (data.signedUp) replace(RAW_PATH.HOME);
-      } else {
+      if (data.signedUp) replace(RAW_PATH.HOME);
+      else {
         alert('회원가입 화면으로 이동합니다!');
-
         replace(RAW_PATH.SIGNUP);
       }
     }
@@ -46,13 +42,9 @@ export default function AuthScreen() {
   }, [data, isError, setUserToken]);
 
   return (
-    <div className="container-mobile grid h-screen place-items-center">
-      {isFetching && <div className="flex flex-col" />}
-      {isError && (
-        <div className="flex w-full flex-col items-center justify-center gap-2 text-lg">
-          <img src={LoginBg} />
-        </div>
-      )}
+    <div className="container-mobile relative grid h-screen place-items-center overflow-hidden">
+      <span className="text-xl font-semibold text-white">로그인 중...</span>
+      <img src={LoginBg} className="absolute inset-0 -z-1" />
     </div>
   );
 }
