@@ -11,12 +11,22 @@ export default function JoinForm() {
   const setUserMode = useSetAtom(userModeAtom);
   const userEmail = fetchSessionData<{ kakaoEmail: string }>('userEmail');
   const { mutate } = useUserJoin();
+
+  const generateRandomString = (length = 19) => {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    let result = '';
+    for (let i = 0; i < length; i++) {
+      result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return result;
+  };
+
   const { register, handleSubmit } = useForm<User>({
     defaultValues: {
       kakaoEmail: userEmail?.kakaoEmail || '',
       name: '',
       collegeMajorName: '컴퓨터공학전공',
-      studentEmail: 'faker@kyonggi.ac.kr',
+      studentEmail: `${generateRandomString()}@kyonggi.ac.kr`,
       walletAddress: '0x1234abcd5678',
       keyId: 'kas-key-id',
       krn: 'krn:1001:abcd',
