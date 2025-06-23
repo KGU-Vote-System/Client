@@ -1,18 +1,19 @@
-import { useAtomValue, useSetAtom } from 'jotai';
+import { useSetAtom } from 'jotai';
 import { useForm } from 'react-hook-form';
 
-import { userEmailAtom, userModeAtom } from '@/shared/atom';
+import { userModeAtom } from '@/shared/atom';
 import { Button, Input } from '@/shared/ui';
 import type { User } from '@/shared/types';
 import { useUserJoin } from '../api';
+import { fetchSessionData } from '@/shared/utils';
 
 export default function JoinForm() {
   const setUserMode = useSetAtom(userModeAtom);
-  const { kakaoEmail } = useAtomValue(userEmailAtom);
+  const userEmail = fetchSessionData<{ kakaoEmail: string }>('userEmail');
   const { mutate } = useUserJoin();
   const { register, handleSubmit } = useForm<User>({
     defaultValues: {
-      kakaoEmail: kakaoEmail,
+      kakaoEmail: userEmail?.kakaoEmail || '',
       name: '',
       collegeMajorName: '컴퓨터공학전공',
       studentEmail: 'faker@kyonggi.ac.kr',
