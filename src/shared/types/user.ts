@@ -7,3 +7,10 @@ export type User = {
   keyId: string;
   krn: string;
 };
+
+export type Token = {
+  grantType: string;
+  accessToken: string;
+  accessTokenExpiresIn: number;
+  refreshToken: string;
+};
