@@ -78,9 +78,10 @@ const submitKakaoLogin = async (code: string) => {
   return response.data;
 };
 
-export const useKakaoLogin = (code: string) => {
+export const useKakaoLogin = (code: string | null) => {
   return useQuery<KakaoLoginResponse>({
+    enabled: !!code,
     queryKey: ['kakaoLogin', code],
-    queryFn: () => submitKakaoLogin(code),
+    queryFn: () => submitKakaoLogin(code!),
   });
 };

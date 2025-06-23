@@ -28,17 +28,9 @@ export default function AuthScreen() {
   const setUserToken = useSetAtom(userTokenAtom);
   const params = new URLSearchParams(location.search);
 
-  const getCode = () => {
-    const code = params.get('code');
-    if (!code) {
-      alert('로그인에 실패했어요. 다시 시도해 주세요!');
-      replace(RAW_PATH.HOME);
-      return '';
-    }
-    return code;
-  };
+  const code = params.get('code');
 
-  const { data, isError } = useKakaoLogin(getCode());
+  const { data, isError } = useKakaoLogin(code);
 
   useEffect(() => {
     if (data) {
