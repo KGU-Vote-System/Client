@@ -1,19 +1,3 @@
-// import { useEffect } from 'react';
-// import { useKakaoLogin } from '@/screen/auth/api';
-// import { LoginBg } from '@/assets/image';
-
-// import Loader from '@/shared/ui/Loader';
-
-// export default function AuthScreen() {
-//   const params = new URLSearchParams(location.search);
-//   const code = params.get('code');
-
-//   const { mutate } = useKakaoLogin();
-
-//   useEffect(() => {
-//     if (code) mutate({ code });
-//   }, [code, mutate]);
-
 import { useEffect } from 'react';
 import { useSetAtom } from 'jotai';
 import { useKakaoLogin } from '@/screen/auth/api';
@@ -35,6 +19,7 @@ export default function AuthScreen() {
 
   useEffect(() => {
     if (data) {
+      console.log('로그인 성공', data);
       if (data.signedUp) {
         const kakaoAccessToken = data.tokenDto.accessToken;
         setUserToken({
