@@ -9,7 +9,7 @@ interface CardProps {
   isStackCard?: boolean;
   className?: string;
   campus: string;
-  status: string;
+  status?: string;
   title: string;
   date: string;
   customTo?: PathItem;
@@ -19,7 +19,7 @@ export default function Card({
   isStackCard = false,
   className,
   campus,
-  status,
+  status = '진행중',
   title,
   date,
   customTo,
