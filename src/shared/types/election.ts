@@ -29,3 +29,9 @@ export type Nominee = {
   candidateId: number;
   main: boolean;
 };
+
+export type Pledge = {
+  id: number;
+  description: string;
+  candidateId: number;
+};
