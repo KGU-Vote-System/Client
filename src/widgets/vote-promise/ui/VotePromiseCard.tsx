@@ -2,21 +2,25 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 
 import { VerifiedCheckIcon } from '@/assets/icon';
-import type { Nominee } from '@/shared/types';
+import type { Candidate, Nominee, Pledge } from '@/shared/types';
 import { cn } from '@/shared/utils';
 
 import VoteCandidate from './VoteCandidate';
+import { useFetchPledgeData } from '../api';
 
 interface VotePromiseCardProps {
   nominees: Nominee[];
   candidateName: string;
+  candidate: Candidate;
 }
 
 export default function VotePromiseCard({
   nominees,
   candidateName,
+  candidate,
 }: VotePromiseCardProps) {
   const [flipped, setFlipped] = useState(false);
+  const { data: pledge } = useFetchPledgeData(candidate.id);
 
   const CardFront = () => (
     <div className="border-m shadow-voteItem absolute flex h-full w-full flex-col rounded-lg border-[1px] bg-white p-6 backface-hidden">
@@ -40,18 +44,24 @@ export default function VotePromiseCard({
       </div>
       <div className="flex flex-col items-center">
         <p className="text-m mb-[30px] text-center text-2xl font-bold">
-          '기아'의 핵심공약
+          '{candidateName}'의 핵심공약
         </p>
-        <div className="flex flex-col gap-1 font-normal">
-          <VotePromise promise="기숙사 개선" />
-          <VotePromise promise="교내 와이파이 개선" />
-          <VotePromise promise="전공과목 인원 확대" />
-          <VotePromise promise="교내 강의동 시설 보수" />
-          <VotePromise promise="다양한 행사 활성화" />
-        </div>
+        {renderPledge(pledge?.results || [])}
       </div>
     </div>
   );
+
+  const renderPledge = (data: Pledge[]) => {
+    if (data)
+      return (
+        <div className="flex flex-col gap-1 font-normal">
+          {data.map(({ id, description }) => (
+            <VotePromise key={id} promise={description} />
+          ))}
+        </div>
+      );
+    else return <></>;
+  };
 
   return (
     <div

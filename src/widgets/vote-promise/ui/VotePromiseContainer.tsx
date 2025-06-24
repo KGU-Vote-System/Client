@@ -27,6 +27,7 @@ export default function VotePromiseContainer({
       <VotePromiseCard
         nominees={nomineeData[selectedCard]}
         candidateName={candidates[selectedCard]}
+        candidate={candidateData[selectedCard]}
       />
       <div className="my-7 flex w-full justify-center">
         <div className="flex gap-[22px]">
