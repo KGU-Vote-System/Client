@@ -1,19 +1,36 @@
 import { cn } from '@/shared/utils';
 import type { ButtonHTMLAttributes } from 'react';
 import { FaCheck } from 'react-icons/fa';
+import { useFetchCandidateDetail } from '../api/candidate';
 
-interface VoteItemProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface VoteItemProps
+  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'id'> {
   selected: boolean;
   title: string;
-  candidates: string[];
+  id: number;
 }
 
 export default function VoteItem({
   selected,
   onClick,
   title,
-  candidates,
+  id,
 }: VoteItemProps) {
+  const { data } = useFetchCandidateDetail(id);
+
+  const renderNominees = () => {
+    if (data) {
+      const nominees = data.results;
+      return (
+        <>
+          {nominees.map(({ id, name }) => (
+            <p key={id}>{name}</p>
+          ))}
+        </>
+      );
+    } else return <></>;
+  };
+
   return (
     <button
       onClick={onClick}
@@ -36,12 +53,9 @@ export default function VoteItem({
       <div className="grid grid-cols-2 gap-x-2.5 gap-y-1">
         <div className="text-m flex flex-col items-center">
           <p>정후보자</p>
-          <p>정후보자</p>
+          <p>부후보자</p>
         </div>
-        <div className="flex flex-col items-center">
-          <p>{candidates[0]}</p>
-          <p>{candidates[1]}</p>
-        </div>
+        <div className="flex flex-col items-center">{renderNominees()}</div>
       </div>
     </button>
   );
