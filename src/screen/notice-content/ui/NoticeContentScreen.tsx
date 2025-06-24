@@ -10,9 +10,14 @@ const NoticeContentScreen: ActivityComponentType<{ notice: Notice }> = ({
 }: {
   params: { notice: Notice };
 }) => {
+  const { title, id, startAt, endAt } = params.notice;
   return (
     <AppScreen backgroundColor="#fff" appBar={TitleAppBar('공지사항')}>
-      <NoticeContentContainer title={params.notice.title} />
+      <NoticeContentContainer
+        title={title}
+        id={id}
+        date={`${startAt} - ${endAt}`}
+      />
     </AppScreen>
   );
 };
