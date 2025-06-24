@@ -8,6 +8,7 @@ import { PATH } from '@/shared/constants';
 
 import { VoteItem } from '@/widgets/vote/ui';
 import { useFetchElectionDetail } from '../api/election';
+import { useFetchCandidateDetail } from '../api/candidate';
 
 interface VoteContainerProps {
   electionId: number;
@@ -20,7 +21,16 @@ export default function VoteContainer({
 }: VoteContainerProps) {
   const [selected, setSelected] = useState(-1);
   const { push, replace } = useFlow();
-  const { data } = useFetchElectionDetail(electionId);
+  const { data: candidates } = useFetchElectionDetail(electionId);
+
+  const { data: nominee1 } = useFetchCandidateDetail(
+    candidates?.results[0].id,
+    candidates?.results[0],
+  );
+  const { data: nominee2 } = useFetchCandidateDetail(
+    candidates?.results[1].id,
+    candidates?.results[1],
+  );
 
   const handleClick = (index: number) => {
     if (selected === index) setSelected(-1);
@@ -28,10 +38,10 @@ export default function VoteContainer({
   };
 
   const renderCandidates = () => {
-    if (data)
+    if (candidates) {
       return (
         <div className="relative mb-21 flex w-full gap-x-[10px]">
-          {data.results.map(({ name, id }, index) => (
+          {candidates.results.map(({ name, id }, index) => (
             <VoteItem
               key={index}
               title={name}
@@ -45,7 +55,7 @@ export default function VoteContainer({
           </div>
         </div>
       );
-    else return <></>;
+    } else return <></>;
   };
 
   return (
@@ -60,7 +70,13 @@ export default function VoteContainer({
       </p>
       <Button
         className="bg-ml mb-6 flex h-17 items-center justify-between rounded-lg px-5 text-start text-lg"
-        onClick={() => push(PATH.VOTE_PROMISE, {})}
+        onClick={() => {
+          if (nominee1 && nominee2 && candidates)
+            push(PATH.VOTE_PROMISE, {
+              nominees: [[...nominee1.results], [...nominee2.results]],
+              candidates: candidates.results,
+            });
+        }}
       >
         후보자 공약 보러가기
         <IoChevronForwardSharp size={20} />
