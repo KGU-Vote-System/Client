@@ -1,3 +1,4 @@
+import Alert from './icon-alert.png';
 import Character from './character.svg';
 import CharacterComplete from './character-complete.png';
 import CharacterFlat from './character-flat.png';
@@ -20,6 +21,7 @@ import VoteIcon from './icon-vote.svg';
 import WriteIcon from './icon-write.svg';
 
 export {
+  Alert,
   BackButton,
   Character,
   Character2,
