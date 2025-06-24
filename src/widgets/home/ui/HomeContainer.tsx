@@ -2,7 +2,7 @@ import { NoticeIcon, ResultIcon } from '@/assets/icon';
 import { useFlow } from '@/app/stackflow';
 import type { PathItem } from '@/shared/types';
 import { PATH } from '@/shared/constants';
-import { CardStack } from '@/features/home/ui';
+import { CardSection } from '@/features/home/ui';
 
 interface ServiceButtonProps {
   title: string;
@@ -14,8 +14,7 @@ interface ServiceButtonProps {
 export default function HomeContainer() {
   return (
     <div className="size-full flex-col items-center p-6">
-      <p className="mb-8 text-2xl font-semibold">진행중인 선거가 있어요!</p>
-      <CardStack />
+      <CardSection />
       <p className="mt-10 mb-4 text-xl font-semibold">이런 서비스도 있어요</p>
       <div className="flex w-full flex-col gap-[14px]">
         <ServiceButton
