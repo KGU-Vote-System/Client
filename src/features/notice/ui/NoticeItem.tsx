@@ -1,25 +1,33 @@
 import { MessageIcon, NotificationIcon } from '@/assets/icon';
-import type { Notice } from '../types';
+import type { NoticeList } from '../types';
 
-import { cn } from '@/shared/utils';
 import { useFlow } from '@/app/stackflow';
 import { PATH } from '@/shared/constants';
+import { NOTICE_STATUS } from '../constants';
 
-export default function NoticeItem({ id, title, type, date }: Notice) {
-  const typeLabel = type === 'NOTIFICATION' ? '알림' : '예정';
+export default function NoticeItem({
+  id,
+  title,
+  noticeStatus,
+  startAt,
+  endAt,
+}: NoticeList) {
   const { push } = useFlow();
+  const { label, bgColor, color } = NOTICE_STATUS[noticeStatus];
 
   return (
     <button
       name={`${id}`}
       className="flex w-full flex-shrink-0 cursor-pointer items-center overflow-hidden py-6 focus:outline-none"
       onClick={() =>
-        push(PATH.NOTICE_CONTENT, { notice: { id, title, type, date } })
+        push(PATH.NOTICE_CONTENT, {
+          notice: { id, title, startAt, endAt },
+        })
       }
     >
       <div className="shadow-noticeItem grid place-items-center rounded-md px-2 py-1">
         <img
-          src={type === 'NOTIFICATION' ? NotificationIcon : MessageIcon}
+          src={noticeStatus === 'NOTIFY' ? NotificationIcon : MessageIcon}
           className="h-10 w-11"
         />
       </div>
@@ -30,17 +38,13 @@ export default function NoticeItem({ id, title, type, date }: Notice) {
             {title}
           </p>
           <div
-            className={cn(
-              type === 'NOTIFICATION'
-                ? 'bg-red-500/20 text-red-600'
-                : 'bg-mxl text-m',
-              'flex w-13 items-center justify-center rounded-[6px] py-0.5 text-sm font-medium',
-            )}
+            className="flex w-13 items-center justify-center rounded-[6px] py-0.5 text-sm font-medium"
+            style={{ backgroundColor: `${bgColor}`, color: `${color}` }}
           >
-            {typeLabel}
+            {label}
           </div>
         </div>
-        <p className="text-mid font-medium text-[#999]">{date}</p>
+        <p className="text-mid font-medium text-[#999]">{startAt}</p>
       </div>
     </button>
   );
