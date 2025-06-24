@@ -5,4 +5,6 @@ export const REQUEST = {
   ELECTION_ALL: '/api/elections/all',
   NOTICE_CAMPUS: '/api/notices/notices/campus/',
   NOTICE: '/api/notices/',
+  CANDIDATE: '/api/candidates/all/',
+  NOMINEE: '/api/nominees/{candidateId}/all',
 };
