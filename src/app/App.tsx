@@ -6,18 +6,8 @@ import { AuthScreen } from '@/screen/auth/ui';
 import { JoinScreen } from '@/screen/join/ui';
 import { JoinLoadingScreen } from '@/screen/join-loading/ui';
 import { JoinCompleteScreen } from '@/screen/join-complete/ui';
-import { useFetchUserInfo } from '@/shared/hook';
-import { useEffect } from 'react';
 
 export default function App() {
-  const { data } = useFetchUserInfo();
-
-  useEffect(() => {
-    if (data) {
-      sessionStorage.setItem('userInfo', JSON.stringify(data.results[0]));
-    }
-  }, [data]);
-
   const router = createBrowserRouter([
     {
       path: RAW_PATH.HOME,
