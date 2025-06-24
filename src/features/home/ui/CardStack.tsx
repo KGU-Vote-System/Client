@@ -2,14 +2,14 @@ import { useRef, useState } from 'react';
 import { animate, motion } from 'framer-motion';
 
 import { Card } from '@/shared/ui';
-import { CARD_MOCK } from '@/features/home/mock';
 import type { Election } from '@/shared/types';
+import { getDate } from '@/shared/utils';
 
 export default function CardStack({ data }: { data: Election[] }) {
   const [stack, setStack] = useState<Election[]>(data);
   const [passedCards, setPassedCards] = useState<Election[]>([]);
   const cardRefs = useRef<{ [key: number]: HTMLDivElement | null }>({});
-  const currentIndex = CARD_MOCK.length - stack.length;
+  const currentIndex = data.length - stack.length;
 
   return (
     <>
@@ -94,16 +94,17 @@ export default function CardStack({ data }: { data: Election[] }) {
             >
               <Card
                 isStackCard
+                id={card.id}
                 campus={card.campus}
                 title={card.title}
-                date={`${card.startAt} - ${card.endAt}`}
+                date={`${getDate(card.startAt, 'YYYY.MM.DD')} - ${getDate(card.endAt, 'YYYY.MM.DD')}`}
               />
             </motion.div>
           );
         })}
       </div>
       <div className="mt-[14px] flex w-full justify-center gap-[6px]">
-        {CARD_MOCK.map((_, idx) => (
+        {data.map((_, idx) => (
           <div
             key={idx}
             className={`h-[6px] rounded-full transition-colors ${
