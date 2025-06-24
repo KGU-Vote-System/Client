@@ -1,4 +1,5 @@
 export const REQUEST = {
+  USER: '/api/users/',
   LOGIN: '/auth/kakao',
   JOIN: '/auth/kakao/signup',
   REFRESH: '/auth/refresh',
