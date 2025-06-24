@@ -1,5 +1,5 @@
 import { REQUEST, userGet } from '@/shared/api';
-import type { Nominee } from '@/shared/types';
+import type { Candidate, Nominee } from '@/shared/types';
 import { useQuery } from '@tanstack/react-query';
 
 interface CandidateDetailResponse {
@@ -20,9 +20,10 @@ const fetchCandidateDetail = async (id: number) => {
   return response.data;
 };
 
-export const useFetchCandidateDetail = (id: number) => {
+export const useFetchCandidateDetail = (id?: number, candidate?: Candidate) => {
   return useQuery({
     queryKey: ['candidate-detail', `${id}`],
-    queryFn: () => fetchCandidateDetail(id),
+    queryFn: () => fetchCandidateDetail(id!),
+    enabled: typeof candidate !== 'undefined',
   });
 };
