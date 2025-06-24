@@ -6,7 +6,7 @@ export default function LoginContainer() {
   const handleClick = () => {
     // replace(RAW_PATH.SIGNUP); // 개발용 임시
     window.location.replace(
-      `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${import.meta.env.VITE_KAKAO_REST_API_KEY}&redirect_uri=${import.meta.env.VITE_REDIRECT_URL}`,
+      `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${import.meta.env.VITE_KAKAO_REST_API_KEY}&redirect_uri=${import.meta.env.VITE_REDIRECT_URL}&scope=account_email`,
     );
   };
 
