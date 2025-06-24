@@ -2,4 +2,7 @@ export const REQUEST = {
   LOGIN: '/auth/kakao',
   JOIN: '/auth/kakao/signup',
   REFRESH: '/auth/refresh',
+  ELECTION_ALL: '/api/elections/all',
+  NOTICE_CAMPUS: '/api/notices/notices/campus/',
+  NOTICE: '/api/notices/',
 };
