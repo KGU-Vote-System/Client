@@ -11,3 +11,21 @@ export type Election = {
   ownerId: number;
   collageMajorName: string;
 };
+
+export type Candidate = {
+  id: number;
+  name: string;
+  electionId: number;
+  voteCount: number;
+};
+
+export type Nominee = {
+  id: number;
+  name: string;
+  studentId: string;
+  college: string;
+  department: string;
+  description: string;
+  candidateId: number;
+  main: boolean;
+};
