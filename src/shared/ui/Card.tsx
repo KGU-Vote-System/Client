@@ -1,17 +1,19 @@
+import dayjs from 'dayjs';
 import { useFlow } from '@/app/stackflow';
 
-import { PATH } from '@/shared/constants';
+import { CAMPUS, PATH } from '@/shared/constants';
 import { cn, hexToRgba } from '@/shared/utils';
 import { Button, DateBadge } from '@/shared/ui';
-import type { PathItem } from '@/shared/types';
+import type { Campus, PathItem } from '@/shared/types';
 
 interface CardProps {
   isStackCard?: boolean;
   className?: string;
-  campus: string;
+  campus: Campus;
   status?: string;
   title: string;
   date: string;
+  id: number;
   customTo?: PathItem;
 }
 
@@ -23,6 +25,7 @@ export default function Card({
   title,
   date,
   customTo,
+  id,
 }: CardProps) {
   const { push } = useFlow();
 
@@ -51,7 +54,7 @@ export default function Card({
       <div className="mb-5 flex w-full justify-between">
         <div className="flex gap-x-1">
           <div className="bg-m/10 text-m rounded-full px-[12px] py-[6px] text-[13px] font-light">
-            {campus}
+            {CAMPUS[campus]}
           </div>
           <div
             className="rounded-full px-[12px] py-[6px] text-[13px] font-light"
@@ -60,15 +63,20 @@ export default function Card({
             {status}
           </div>
         </div>
-        {status === '진행중' && <DateBadge date={7} />}
+        {status === '진행중' && (
+          <DateBadge date={dayjs(date.split(' ')[2]).diff(dayjs(), 'day')} />
+        )}
       </div>
       <p className="text-md mb-2.5 text-2xl font-semibold">{title}</p>
       <p className="text-s mb-[34px] font-normal">{date}</p>
       <Button
         intent="gradient"
         size="md"
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        onClick={() => push(to, { notice: {} as any })}
+        onClick={() => {
+          if (to === PATH.VOTE) push(PATH.VOTE, { id: id, title: title });
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          else push(to, { notice: {} as any });
+        }}
       >
         {to === PATH.VOTE ? '투표하기' : button}
       </Button>
