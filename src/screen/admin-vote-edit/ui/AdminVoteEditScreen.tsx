@@ -18,7 +18,7 @@ export default function AdminVoteEditScreen() {
             <span className="text-m">선거운동본부</span>를 선택해주세요.
           </p>
           <Card
-            campus="수원"
+            campus="SUWON"
             title="구름 선거운동본부"
             status="예정"
             date="25-05-29"
@@ -26,7 +26,7 @@ export default function AdminVoteEditScreen() {
             customTo={PATH.VOTE_EDIT}
           />
           <Card
-            campus="수원"
+            campus="SUWON"
             title="구름 선거운동본부"
             status="예정"
             date="25-05-29"
