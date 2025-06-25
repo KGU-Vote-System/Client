@@ -1,5 +1,11 @@
 /* eslint-disable react-refresh/only-export-components */
-import { BackButton, LogoutIcon, UserIcon, WriteIcon } from '@/assets/icon';
+import {
+  BackButton,
+  LogoutIcon,
+  UserIcon,
+  UserSquareIcon,
+  WriteIcon,
+} from '@/assets/icon';
 import { HomeBg, LoginBg, VoteBg } from '@/assets/image';
 import type { MouseEvent } from 'react';
 
@@ -21,13 +27,13 @@ export const HomeAppBar = (
   renderRight: () => (
     <>
       <button
-        className="text-m mr-[12px] flex items-center gap-x-1"
+        className="text-m mr-[12px] flex cursor-pointer items-center gap-x-1"
         onClick={onLogoutClick}
       >
         <img src={LogoutIcon} />
       </button>
       <button
-        className="text-m mr-[4px] flex items-center gap-x-1"
+        className="text-m mr-[4px] flex cursor-pointer items-center gap-x-1"
         onClick={onUserClick}
       >
         <img src={UserIcon} />
@@ -39,6 +45,7 @@ export const HomeAppBar = (
 export const AdminAppBar = (
   onLogoutClick: () => void,
   onWriteClick: () => void,
+  onChangeModeClick: () => void,
 ) => ({
   ...baseStyle,
   backgroundImage: `url(${VoteBg})`,
@@ -46,16 +53,22 @@ export const AdminAppBar = (
   renderRight: () => (
     <>
       <button
-        className="text-m mr-[12px] flex items-center gap-x-1"
+        className="text-m mr-[12px] flex cursor-pointer items-center gap-x-1"
         onClick={onLogoutClick}
       >
         <img src={LogoutIcon} />
       </button>
       <button
-        className="text-m mr-[4px] flex items-center gap-x-1"
+        className="text-m mr-[12px] flex cursor-pointer items-center gap-x-1"
         onClick={onWriteClick}
       >
         <img src={WriteIcon} />
+      </button>
+      <button
+        className="text-m mr-[4px] flex cursor-pointer items-center gap-x-1"
+        onClick={onChangeModeClick}
+      >
+        <img src={UserSquareIcon} />
       </button>
     </>
   ),
