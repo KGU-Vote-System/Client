@@ -1,4 +1,10 @@
-import type { CardProps } from '@/features/home/types';
+type CardProps = {
+  id: number;
+  title: string;
+  campus: string;
+  status: string;
+  date: string;
+}
 
 export const CARD_MOCK: CardProps[] = [
   {
