@@ -1,5 +1,6 @@
 import type { VoteStatus } from '@/shared/types';
 // import { Card } from '@/shared/ui';
+import { VOTE_MOCK } from '@/features/admin-dashboard/mock';
 
 export default function CardList({ status }: { status: VoteStatus }) {
   const data = VOTE_MOCK.filter(
