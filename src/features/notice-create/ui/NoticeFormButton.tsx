@@ -1,15 +1,26 @@
 import { cn } from '@/shared/utils';
-import { useState } from 'react';
+import type { HTMLAttributes } from 'react';
 
-export default function NoticeFormButton({ label }: { label: string }) {
-  const [selected, setSelected] = useState(false);
+interface NoticeFormButtonProps extends HTMLAttributes<HTMLButtonElement> {
+  label: string;
+  selected: boolean;
+}
+
+export default function NoticeFormButton({
+  label,
+  selected,
+  onClick,
+  ...rest
+}: NoticeFormButtonProps) {
   return (
     <button
-      onClick={() => setSelected(!selected)}
+      type="button"
+      onClick={onClick}
       className={cn(
         selected ? 'text-m border-m' : 'border-sl text-s',
         'cursor-pointer rounded-md border-[1px] px-[14px] py-1 text-sm focus:outline-none',
       )}
+      {...rest}
     >
       {label}
     </button>

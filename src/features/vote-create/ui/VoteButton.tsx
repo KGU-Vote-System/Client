@@ -10,12 +10,14 @@ export default function VoteButton({
   arrowDown = false,
   label,
   onClick,
+  ...rest
 }: VoteButtonProps) {
   return (
     <button
       name="mainCandidate"
       className="border-sl flex h-17 w-full cursor-pointer items-center justify-between rounded-md border-[1px] px-5 font-normal text-[#999] focus:outline-none"
       onClick={onClick}
+      {...rest}
     >
       {label}
       {arrowDown ? (
