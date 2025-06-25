@@ -1,5 +1,5 @@
 import type { VoteStatus } from '@/shared/types';
-import { Card } from '@/shared/ui';
+// import { Card } from '@/shared/ui';
 
 export default function CardList({ status }: { status: VoteStatus }) {
   const data = VOTE_MOCK.filter(
