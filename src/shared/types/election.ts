@@ -12,6 +12,8 @@ export type Election = {
   collageMajorName: string;
 };
 
+export type ElectionPost = Omit<Election, 'ownerId' | 'isActive' | 'id'>;
+
 export type Candidate = {
   id: number;
   name: string;
