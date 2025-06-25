@@ -52,12 +52,21 @@ export const { Stack, useFlow } = stackflow({
   ],
   initialActivity: () => {
     if (fetchLoginStatus()) {
-      if (sessionStorage.getItem('userMode')) {
-        const mode = JSON.parse(sessionStorage.getItem('userMode')!).mode;
+      const userModeRaw = sessionStorage.getItem('userMode');
+      if (userModeRaw) {
+        const mode = JSON.parse(userModeRaw).mode;
         if (mode === 'STUDENT') return 'HomeScreen';
-        else if (mode === 'ADMIN') return 'AdminHomeScreen';
-        else return 'LoginScreen';
-      } else return 'LoginScreen';
-    } else return 'LoginScreen';
+        if (mode === 'ADMIN') return 'AdminHomeScreen';
+      }
+
+      const userInfoRaw = sessionStorage.getItem('userInfo');
+      if (userInfoRaw) {
+        const role = JSON.parse(userInfoRaw).role;
+        if (role === 'ROLE_USER') return 'HomeScreen';
+        if (role === 'ROLE_ADMIN') return 'AdminHomeScreen';
+      }
+    }
+
+    return 'LoginScreen';
   },
 });

@@ -14,3 +14,5 @@ export type Token = {
   accessTokenExpiresIn: number;
   refreshToken: string;
 };
+
+export type Role = 'ROLE_ADMIN' | 'ROLE_USER';

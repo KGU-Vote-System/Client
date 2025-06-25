@@ -2,14 +2,18 @@ import { useState } from 'react';
 
 import { cn } from '@/shared/utils';
 import { NoticeList } from '@/features/notice/ui';
+import type { Campus } from '@/shared/types';
 
 export default function NoticeContainer() {
   const [selected, setSelected] = useState(0);
-  const campus = ['수원캠', '서울캠'];
+  const CAMPUS: Record<string, Campus> = {
+    수원캠: 'SUWON',
+    서울캠: 'SEOUL',
+  };
   return (
     <div className="p-normal flex size-full flex-col pt-0">
       <div className="mt-mt mb-[22px] box-border flex h-13 w-full rounded-[16px] bg-[#F7F7F9] p-0.5 text-lg font-semibold">
-        {campus.map((campusName, index) => (
+        {Object.keys(CAMPUS).map((campusName, index) => (
           <button
             key={campusName}
             name={campusName}
@@ -23,7 +27,7 @@ export default function NoticeContainer() {
           </button>
         ))}
       </div>
-      <NoticeList />
+      <NoticeList campus={Object.values(CAMPUS)[selected]} />
     </div>
   );
 }

@@ -27,7 +27,7 @@ type RefreshTokenResponse = {
 };
 
 const instance = axios.create({
-  baseURL: 'https://www.festamate.shop/api',
+  baseURL: 'http://localhost:8080',
 });
 
 instance.interceptors.request.use(async config => {

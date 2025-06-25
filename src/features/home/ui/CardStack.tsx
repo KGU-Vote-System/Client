@@ -2,14 +2,14 @@ import { useRef, useState } from 'react';
 import { animate, motion } from 'framer-motion';
 
 import { Card } from '@/shared/ui';
-import type { CardProps } from '@/features/home/types';
-import { CARD_MOCK } from '@/features/home/mock';
+import type { Election } from '@/shared/types';
+import { getDate } from '@/shared/utils';
 
-export default function CardStack() {
-  const [stack, setStack] = useState<CardProps[]>(CARD_MOCK);
-  const [passedCards, setPassedCards] = useState<CardProps[]>([]);
+export default function CardStack({ data }: { data: Election[] }) {
+  const [stack, setStack] = useState<Election[]>(data);
+  const [passedCards, setPassedCards] = useState<Election[]>([]);
   const cardRefs = useRef<{ [key: number]: HTMLDivElement | null }>({});
-  const currentIndex = CARD_MOCK.length - stack.length;
+  const currentIndex = data.length - stack.length;
 
   return (
     <>
@@ -47,7 +47,7 @@ export default function CardStack() {
                 { x: 0 },
                 { type: 'spring', stiffness: 300 },
               );
-              setStack(CARD_MOCK);
+              setStack(data);
               setPassedCards([]);
             } else if (stack.length !== 0) {
               setPassedCards(prev => [...prev, stack[0]]);
@@ -94,17 +94,17 @@ export default function CardStack() {
             >
               <Card
                 isStackCard
+                id={card.id}
                 campus={card.campus}
-                status={card.status}
                 title={card.title}
-                date={card.date}
+                date={`${getDate(card.startAt, 'YYYY.MM.DD')} - ${getDate(card.endAt, 'YYYY.MM.DD')}`}
               />
             </motion.div>
           );
         })}
       </div>
       <div className="mt-[14px] flex w-full justify-center gap-[6px]">
-        {CARD_MOCK.map((_, idx) => (
+        {data.map((_, idx) => (
           <div
             key={idx}
             className={`h-[6px] rounded-full transition-colors ${

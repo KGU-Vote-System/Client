@@ -7,47 +7,81 @@ import { Button } from '@/shared/ui';
 import { PATH } from '@/shared/constants';
 
 import { VoteItem } from '@/widgets/vote/ui';
-import { VOTE_MOCK } from '@/widgets/vote/mock';
+import { useFetchElectionDetail } from '../api/election';
+import { useFetchCandidateDetail } from '../api/candidate';
 
-export default function VoteContainer() {
+interface VoteContainerProps {
+  electionId: number;
+  title: string;
+}
+
+export default function VoteContainer({
+  electionId,
+  title,
+}: VoteContainerProps) {
   const [selected, setSelected] = useState(-1);
   const { push, replace } = useFlow();
+  const { data: candidates } = useFetchElectionDetail(electionId);
+
+  const { data: nominee1 } = useFetchCandidateDetail(
+    candidates?.results[0].id,
+    candidates?.results[0],
+  );
+  const { data: nominee2 } = useFetchCandidateDetail(
+    candidates?.results[1].id,
+    candidates?.results[1],
+  );
 
   const handleClick = (index: number) => {
     if (selected === index) setSelected(-1);
     else setSelected(index);
   };
 
+  const renderCandidates = () => {
+    if (candidates) {
+      return (
+        <div className="relative mb-21 flex w-full gap-x-[10px]">
+          {candidates.results.map(({ name, id }, index) => (
+            <VoteItem
+              key={index}
+              title={name}
+              id={id}
+              selected={selected === index}
+              onClick={() => handleClick(index)}
+            />
+          ))}
+          <div className="bg-md absolute top-19 left-1/2 grid size-[50px] -translate-x-1/2 -translate-y-1/2 transform place-items-center rounded-full text-xl font-semibold text-white">
+            VS
+          </div>
+        </div>
+      );
+    } else return <></>;
+  };
+
   return (
     <div className="p-normal flex size-full flex-col">
-      <div className="mt-mt mb-[10px] flex w-full flex-col text-3xl font-bold">
-        <p>2025학년도</p>
-        <p>총학생회 선거 후보</p>
+      <div className="mt-mt mb-[10px] flex w-[60%] flex-col text-3xl leading-9 font-bold text-wrap">
+        {title.split(' ')[0]}
+        <br />
+        {title.split(' ').slice(1).join(' ') + ' 후보'}
       </div>
       <p className="text-s mb-[50px] text-lg font-semibold">
         공약을 살펴보고 신중하게 투표해주세요
       </p>
       <Button
         className="bg-ml mb-6 flex h-17 items-center justify-between rounded-lg px-5 text-start text-lg"
-        onClick={() => push(PATH.VOTE_PROMISE, {})}
+        onClick={() => {
+          if (nominee1 && nominee2 && candidates)
+            push(PATH.VOTE_PROMISE, {
+              nominees: [[...nominee1.results], [...nominee2.results]],
+              candidates: candidates.results,
+            });
+        }}
       >
         후보자 공약 보러가기
         <IoChevronForwardSharp size={20} />
       </Button>
-      <div className="relative mb-21 flex w-full gap-x-[10px]">
-        {VOTE_MOCK.map(({ title, candidates }, index) => (
-          <VoteItem
-            key={index}
-            title={title}
-            candidates={candidates}
-            selected={selected === index}
-            onClick={() => handleClick(index)}
-          />
-        ))}
-        <div className="bg-md absolute top-19 left-1/2 grid size-[50px] -translate-x-1/2 -translate-y-1/2 transform place-items-center rounded-full text-xl font-semibold text-white">
-          VS
-        </div>
-      </div>
+      {renderCandidates()}
       <Button
         intent={selected !== -1 ? 'gradient' : 'disabled'}
         onClick={() => replace(PATH.VOTE_COMPLETE, {}, { animate: false })}

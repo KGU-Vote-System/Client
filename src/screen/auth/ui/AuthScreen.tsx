@@ -7,6 +7,7 @@ import { replace } from '@/shared/utils';
 import { RAW_PATH } from '@/shared/constants';
 import { userEmailAtom, userTokenAtom } from '@/shared/atom';
 import { Loader } from '@/shared/ui';
+import { useFetchUserInfo } from '@/shared/hook';
 
 export default function AuthScreen() {
   const setUserToken = useSetAtom(userTokenAtom);
@@ -16,30 +17,39 @@ export default function AuthScreen() {
   const code = params.get('code');
 
   const { data, isError } = useKakaoLogin(code);
+  const { refetch: fetchUserData } = useFetchUserInfo();
 
   useEffect(() => {
-    if (data) {
-      console.log('로그인 성공', data);
+    const handleLogin = async () => {
+      if (!data) return;
       if (data.signedUp) {
-        const kakaoAccessToken = data.tokenDto.accessToken;
-        setUserToken({
-          accessToken: kakaoAccessToken,
-        });
-        replace(RAW_PATH.HOME);
+        try {
+          const kakaoAccessToken = data.tokenDto.accessToken;
+          await setUserToken({ accessToken: kakaoAccessToken });
+          const userData = await fetchUserData();
+          const userInfo = userData.data?.results?.[0];
+          if (userInfo) {
+            sessionStorage.setItem('userInfo', JSON.stringify(userInfo));
+          }
+          replace(RAW_PATH.HOME);
+        } catch (error) {
+          console.error('로그인 후 처리 중 오류', error);
+          alert('사용자 정보를 불러오는 데 실패했어요. 다시 시도해 주세요.');
+          replace(RAW_PATH.HOME);
+        }
       } else {
-        const kakaoEmail = data.kakaoEmail;
-        setUserEmail({
-          kakaoEmail: kakaoEmail,
-        });
+        setUserEmail({ kakaoEmail: data.kakaoEmail });
         alert('회원가입 화면으로 이동합니다!');
         replace(RAW_PATH.SIGNUP);
       }
-    }
+    };
+
+    if (data) handleLogin();
     if (isError) {
       alert('로그인에 실패했어요. 다시 시도해 주세요!');
       replace(RAW_PATH.HOME);
     }
-  }, [data, isError, setUserToken, setUserEmail]);
+  }, [data, isError, setUserToken, setUserEmail, fetchUserData]);
 
   return (
     <div className="container-mobile relative grid h-screen place-items-center overflow-hidden">
