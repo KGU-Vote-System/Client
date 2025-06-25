@@ -1,5 +1,5 @@
 import { MessageIcon, NotificationIcon } from '@/assets/icon';
-import type { NoticeList } from '../types';
+import type { NoticeList } from '@/shared/types';
 
 import { useFlow } from '@/app/stackflow';
 import { PATH } from '@/shared/constants';
@@ -21,7 +21,7 @@ export default function NoticeItem({
       className="flex w-full flex-shrink-0 cursor-pointer items-center overflow-hidden py-6 focus:outline-none"
       onClick={() =>
         push(PATH.NOTICE_CONTENT, {
-          notice: { id, title, startAt, endAt },
+          notice: { id, title, startAt, endAt, noticeStatus },
         })
       }
     >
