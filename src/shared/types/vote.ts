@@ -1,1 +1,1 @@
-export type VoteStatus = '진행중' | '종료' | '예정';
+export type VoteStatus = 'ongoing' | 'ended' | 'upcoming';
