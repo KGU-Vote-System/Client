@@ -4,6 +4,7 @@ export const REQUEST = {
   JOIN: '/auth/kakao/signup',
   REFRESH: '/auth/refresh',
   ELECTION_ALL: '/api/elections/all',
+  ELECTION_STATUS: '/api/elections/status',
   NOTICE_CAMPUS: '/api/notices/notices/campus/',
   NOTICE: '/api/notices/',
   CANDIDATE: '/api/candidates/all/',
