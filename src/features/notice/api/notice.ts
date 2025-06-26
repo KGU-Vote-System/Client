@@ -1,8 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
 import { REQUEST, userGet } from '@/shared/api';
-import type { Campus } from '@/shared/types';
-import type { NoticeList } from '../types';
+import type { Campus, NoticeList } from '@/shared/types';
 
 const fetchNoticeByCampus = async (campus: Campus) => {
   const response = await userGet<NoticeList[]>({
