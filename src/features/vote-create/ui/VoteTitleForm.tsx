@@ -9,6 +9,7 @@ import { BOTTOM_SHEET } from '@/shared/constants';
 import { useBottomSheet } from '@/shared/hook';
 import { useVoteCreateContext } from '@/features/vote-create/model';
 import { useEffect } from 'react';
+import { getDate } from '@/shared/utils';
 
 interface VoteTitleFormProps {
   watch: UseFormWatch<ElectionAllData>;
@@ -22,14 +23,22 @@ export default function VoteTitleForm({
   setValue,
 }: VoteTitleFormProps) {
   const { openBottomSheet } = useBottomSheet();
-  const { voteType } = useVoteCreateContext();
+  const { voteType, startDate, endDate } = useVoteCreateContext();
   const isVoteTypeDone = voteType !== '';
+  const isDateDone = startDate !== null && endDate !== null;
 
   useEffect(() => {
     if (voteType !== '') {
       setValue('election.title', voteType);
     }
   }, [voteType, setValue]);
+
+  useEffect(() => {
+    if (startDate !== null && endDate !== null) {
+      setValue('election.startAt', startDate);
+      setValue('election.endAt', endDate);
+    }
+  }, [startDate, endDate, setValue]);
 
   return (
     <div className='"p-normal scrollbar-hide pb-38" h-full overflow-scroll pt-0'>
@@ -43,7 +52,22 @@ export default function VoteTitleForm({
           }}
           done={isVoteTypeDone}
         />
-        <VoteButton label="투표 기간을 선택하세요" arrowDown type="button" />
+        <VoteButton
+          label={
+            isDateDone
+              ? `${getDate(startDate, 'YYYY.MM.DD')} - ${getDate(
+                  endDate,
+                  'YYYY.MM.DD',
+                )}`
+              : '투표 기간을 선택하세요'
+          }
+          arrowDown
+          type="button"
+          onClick={() => {
+            openBottomSheet(BOTTOM_SHEET.DATE_PICKER);
+          }}
+          done={isDateDone}
+        />
       </div>
       <p className="mt-6 text-lg font-semibold">선거운동본부 등록하기</p>
       <div className="mt-[18px] flex w-full flex-col gap-[14px]">
