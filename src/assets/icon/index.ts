@@ -20,6 +20,7 @@ import UserSquareIcon from './icon-user-square.svg';
 import VoteCompleteIcon from './icon-vote-complete.png';
 import VoteIcon from './icon-vote.svg';
 import WriteIcon from './icon-write.svg';
+import ProfileIcon from './icon-profile.png';
 
 export {
   Alert,
@@ -44,4 +45,5 @@ export {
   VoteCompleteIcon,
   VoteIcon,
   WriteIcon,
+  ProfileIcon,
 };
