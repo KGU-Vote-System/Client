@@ -20,6 +20,7 @@ const ButtonVariants = cva(
         login: 'bg-[#1A1A1A] text-white font-medium',
         loginWhite: 'border-[1px] border-[#767676]',
         kakao: 'bg-[#FDE500] text-[#111]',
+        home: 'bg-white/30 border-[1px] border-white text-white',
       },
       size: {
         fit: 'w-full h-fit text-lg',
