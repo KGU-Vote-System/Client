@@ -1,13 +1,17 @@
 import { AppScreen } from '@stackflow/plugin-basic-ui';
+import { IoChevronForward } from 'react-icons/io5';
+
+import { useFlow } from '@/app/stackflow';
+import { ProfileIcon } from '@/assets/icon';
 
 import { Button, TitleAppBar } from '@/shared/ui';
-import { ProfileIcon } from '@/assets/icon';
 import { fetchSessionData, logout } from '@/shared/utils';
+import { PATH } from '@/shared/constants';
 import type { User } from '@/shared/types';
-import { IoChevronForward } from 'react-icons/io5';
 
 export default function UserScreen() {
   const { name, collegeMajorName } = fetchSessionData('userInfo') as User;
+  const { push } = useFlow();
 
   return (
     <AppScreen backgroundColor="#fff" appBar={TitleAppBar('')}>
@@ -25,7 +29,11 @@ export default function UserScreen() {
           <div className="h-full w-[1px] bg-[#ECECEC]" />
           <InfoItem item="51%" label="학과 평균 참여율" />
         </div>
-        <Button intent="gradient" className="mb-13">
+        <Button
+          intent="gradient"
+          className="mb-13"
+          onClick={() => push(PATH.USER_VOTE_STATUS, {})}
+        >
           내 투표내역 보기
         </Button>
         <UserScreenButton label="문의하기" onClick={() => {}} />
