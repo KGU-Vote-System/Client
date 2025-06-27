@@ -18,6 +18,8 @@ export const PATH = {
   VOTE_PROMISE: 'VotePromiseScreen',
   VOTE_RESULT: 'VoteResultScreen',
   VOTE_RESULT_CONTENT: 'VoteResultContentScreen',
+  USER: 'UserScreen',
+  USER_VOTE_STATUS: 'UserVoteStatusScreen',
 } as const;
 
 export const RAW_PATH = {
