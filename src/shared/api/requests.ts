@@ -10,8 +10,8 @@ export const REQUEST = {
   NOTICE_CAMPUS: '/api/notices/notices/campus/',
   CANDIDATE: '/api/candidates/',
   CANDIDATE_ALL: '/api/candidates/all/',
-  NOMINEE_POST: '/api/nominees/{candidateId}',
+  NOMINEE_POST: '/api/nominees/',
   NOMINEE: '/api/nominees/{candidateId}/all',
   PLEDGE: '/api/pledges/{candidateId}/all',
-  PLEDGE_POST: '/api/pledges/{candidateId}',
+  PLEDGE_POST: '/api/pledges/',
 };
