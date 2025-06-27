@@ -14,6 +14,7 @@ import { NoticeCreateScreen } from '@/screen/notice-create/ui';
 import { NoticeScreen } from '@/screen/notice/ui';
 import { VoteCompleteScreen } from '@/screen/vote-complete/ui';
 import { VoteCreateCompleteScreen } from '@/screen/vote-create-complete/ui';
+import { VoteCreateLoadingScreen } from '@/screen/vote-create-loading/ui';
 import { VoteCreateScreen } from '@/screen/vote-create/ui';
 import { VoteEditScreen } from '@/screen/vote-edit/ui';
 import { VotePromiseScreen } from '@/screen/vote-promise/ui';
@@ -37,6 +38,7 @@ export const { Stack, useFlow } = stackflow({
     VoteEditScreen,
     VoteScreen,
     VoteCreateScreen,
+    VoteCreateLoadingScreen,
     VoteCreateCompleteScreen,
     VoteCompleteScreen,
     VotePromiseScreen,
