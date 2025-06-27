@@ -12,6 +12,7 @@ export const PATH = {
   VOTE: 'VoteScreen',
   VOTE_COMPLETE: 'VoteCompleteScreen',
   VOTE_CREATE: 'VoteCreateScreen',
+  VOTE_CREATE_LOADING: 'VoteCreateLoadingScreen',
   VOTE_CREATE_COMPLETE: 'VoteCreateCompleteScreen',
   VOTE_EDIT: 'VoteEditScreen',
   VOTE_PROMISE: 'VotePromiseScreen',

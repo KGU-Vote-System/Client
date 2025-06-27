@@ -15,7 +15,7 @@ interface ElectionDetailResponse {
 
 const fetchElectionDetail = async (id: number) => {
   const response = await userGet<ElectionDetailResponse>({
-    request: REQUEST.CANDIDATE + `${id}`,
+    request: REQUEST.CANDIDATE_ALL + `${id}`,
   });
   return response.data;
 };

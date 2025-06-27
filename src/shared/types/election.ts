@@ -12,11 +12,22 @@ export type Election = {
   collageMajorName: string;
 };
 
+export type ElectionPost = Omit<Election, 'ownerId' | 'isActive' | 'id'> & {
+  active: boolean;
+};
+
 export type Candidate = {
   id: number;
   name: string;
   electionId: number;
   voteCount: number;
+};
+
+export type CandidatePost = Omit<
+  Candidate,
+  'id' | 'voteCount' | 'electionId'
+> & {
+  description: string;
 };
 
 export type Nominee = {
@@ -30,8 +41,12 @@ export type Nominee = {
   main: boolean;
 };
 
+export type NomineePost = Omit<Nominee, 'id' | 'candidateId'>;
+
 export type Pledge = {
   id: number;
   description: string;
   candidateId: number;
 };
+
+export type PledgePost = Omit<Pledge, 'id' | 'candidateId'>;

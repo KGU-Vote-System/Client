@@ -1,8 +1,7 @@
-import type { Campus } from '@/shared/types';
+import type { Campus, NoticeList } from '@/shared/types';
 import { Alert, CharacterFlat } from '@/assets/icon';
 
 import { useFetchNoticeByCampus } from '@/features/notice/api';
-import type { NoticeList } from '@/features/notice/types';
 
 import NoticeItem from './NoticeItem';
 

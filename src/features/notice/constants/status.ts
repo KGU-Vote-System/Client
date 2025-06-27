@@ -1,4 +1,4 @@
-import type { NoticeListType } from '../types';
+import type { NoticeStatus } from '@/shared/types';
 
 type StatusStyle = {
   label: string;
@@ -6,7 +6,7 @@ type StatusStyle = {
   color: string;
 };
 
-export const NOTICE_STATUS: Record<NoticeListType, StatusStyle> = {
+export const NOTICE_STATUS: Record<NoticeStatus, StatusStyle> = {
   COMPLETED: { label: '종료', bgColor: '#F5F5F5', color: '#999' },
   NOTIFY: {
     label: '알림',

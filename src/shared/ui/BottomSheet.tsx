@@ -22,7 +22,7 @@ export default function BottomSheet({ children, sheetKey }: BottomSheetProps) {
       />
       <div
         className={cn(
-          'fixed bottom-0 left-0 z-400 flex h-fit w-full flex-col rounded-t-[32px] bg-white px-[20px] pt-8 pb-18 shadow-lg transition-transform duration-300',
+          'fixed bottom-0 left-0 z-400 flex h-fit w-full flex-col rounded-t-[32px] bg-white px-[40px] pt-8 pb-18 shadow-lg transition-transform duration-300',
           isVisible ? 'translate-y-0' : 'translate-y-full',
           isVisible ? 'box-shadow-bottom-sheet block' : '',
         )}

@@ -5,3 +5,4 @@ export * from './logout';
 export * from './navigate';
 export * from './string';
 export * from './getDate';
+export * from './object';
