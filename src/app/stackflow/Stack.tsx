@@ -22,6 +22,7 @@ import { VoteResultContentScreen } from '@/screen/vote-result-content/ui';
 import { VoteResultScreen } from '@/screen/vote-result/ui';
 import { VoteScreen } from '@/screen/vote/ui';
 import { fetchLoginStatus } from '@/shared/utils';
+import { UserScreen } from '@/screen/user/ui';
 
 export const { Stack, useFlow } = stackflow({
   transitionDuration: 350,
@@ -45,6 +46,7 @@ export const { Stack, useFlow } = stackflow({
     VoteResultScreen,
     VoteResultContentScreen,
     HomeScreen,
+    UserScreen,
   },
   plugins: [
     basicRendererPlugin(),

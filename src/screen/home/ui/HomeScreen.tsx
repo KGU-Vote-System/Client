@@ -8,7 +8,7 @@ import { PATH } from '@/shared/constants';
 import { logout } from '@/shared/utils';
 
 export default function HomeScreen() {
-  const { replace } = useFlow();
+  const { replace, push } = useFlow();
 
   return (
     <AppScreen
@@ -19,7 +19,7 @@ export default function HomeScreen() {
           replace(PATH.LOGIN, {}, { animate: false });
           logout();
         },
-        () => {},
+        () => push(PATH.USER, {}),
       )}
     >
       <HomeContainer />
