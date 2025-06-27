@@ -9,6 +9,16 @@ export default function VoteCreateProvider({
 }) {
   const [mode, setMode] = useState(0);
   const [isCandidateMode, setIsCandidateMode] = useState<boolean>(false);
+  const [voteType, setVoteType] = useState<string>('');
+  const [candidateKey, setCandidateKey] = useState<'candidate1' | 'candidate2'>(
+    'candidate1',
+  );
+  const [nomineeKey, setNomineeKey] = useState<'nominee1' | 'nominee2'>(
+    'nominee1',
+  );
+  const [date, setDate] = useState<Date>(new Date());
+  const [startDate, setStartDate] = useState<string | null>(null);
+  const [endDate, setEndDate] = useState<string | null>(null);
 
   return (
     <VoteCreateContext.Provider
@@ -17,6 +27,18 @@ export default function VoteCreateProvider({
         setMode,
         isCandidateMode,
         setIsCandidateMode,
+        voteType,
+        setVoteType,
+        candidateKey,
+        setCandidateKey,
+        nomineeKey,
+        setNomineeKey,
+        date,
+        setDate,
+        startDate,
+        setStartDate,
+        endDate,
+        setEndDate,
       }}
     >
       {children}
